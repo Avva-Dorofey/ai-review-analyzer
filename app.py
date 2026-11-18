@@ -8,8 +8,13 @@ st.set_page_config(
     layout="centered"
 )
 
-with open("sentiment_model.pkl", "rb") as file:
-    model = pickle.load(file)
+@st.cache_resource
+def load_model():
+    with open("sentiment_model.pkl", "rb") as file:
+        return pickle.load(file)
+
+
+model = load_model()
 
 st.title("🤖 AI Review Analyzer")
 
